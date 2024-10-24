@@ -1,8 +1,9 @@
 import React, { FormEvent, useState } from 'react';
 
+import { Button } from '@tiger-analytics/ui/button';
+
 import { ErrorMessage, StyledLoginContainer, StyledLoginWrapper } from './styled';
 import { TextInput } from '../../designSystem/form';
-import { Button } from '../../designSystem/button';
 import { useUserContext } from '../../store/LoggedUserStore';
 import { getUrl } from '../../utils';
 

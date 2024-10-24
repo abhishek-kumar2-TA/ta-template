@@ -2,8 +2,8 @@ import styled from 'styled-components';
 
 export const HeaderWrapper = styled.header`
   height: 80px;
-  background: ${(props) => props.theme.colors.primary};
-  color: ${(props) => props.theme.colors.background};
+  background: ${(props) => props.theme.colors.background};
+  color: ${(props) => props.theme.colors.textPrimary};
   display: flex;
   align-items: center;
   padding: 0 2rem;
@@ -19,22 +19,22 @@ export const MainNav = styled.nav`
   gap: 2rem;
 
   a {
-    color: ${(props) => props.theme.colors.background};
+    color: ${(props) => props.theme.colors.textPrimary};
     text-decoration: none;
     display: flex;
     align-items: center;
-    border-bottom: 2px solid ${(props) => props.theme.colors.primary};
+    border-bottom: 2px solid ${(props) => props.theme.colors.background};
   }
 
   .active {
-    border-bottom: 2px solid ${(props) => props.theme.colors.background};
+    border-bottom: 2px solid ${(props) => props.theme.colors.secondary.base};
   }
 `;
 
 export const LogoutButton = styled.button`
   border: none;
   background: transparent;
-  color: ${(props) => props.theme.colors.background};
+  color: ${(props) => props.theme.colors.textPrimary};
   cursor: pointer;
   font-size: 1.2rem;
   padding: 8px;

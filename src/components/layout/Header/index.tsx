@@ -23,16 +23,16 @@ export const Header = () => {
 
   return (
     <HeaderWrapper>
-      <ProjectName>Product Pricing</ProjectName>
+      <ProjectName>Portal Template</ProjectName>
       {user ? (
         <MainNav>
           <NavLink to="/" className={({ isActive }) => (isActive ? 'active' : '')}>
             Home
           </NavLink>
-          <NavLink to="/add-pricing" className={({ isActive }) => (isActive ? 'active' : '')}>
-            Add pricing
+          <NavLink to="/feature-2" className={({ isActive }) => (isActive ? 'active' : '')}>
+            Feature 2
           </NavLink>
-          <LogoutButton onClick={logoutClickHandler}>logout</LogoutButton>
+          <LogoutButton onClick={logoutClickHandler}>Logout</LogoutButton>
         </MainNav>
       ) : null}
     </HeaderWrapper>

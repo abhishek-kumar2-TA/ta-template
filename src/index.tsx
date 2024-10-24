@@ -3,18 +3,21 @@ import ReactDom from 'react-dom/client';
 
 import { BrowserRouter } from 'react-router-dom';
 
+import { TigerThemeProvider } from '@tiger-analytics/ui/theme';
+
 import App from './App';
-import { ThemeWrapper } from './designSystem/theme';
 import { Store } from './store';
+import GlobalStyle from './components/GlobalStyle';
 
 const root = ReactDom.createRoot(document.getElementById('root') as HTMLElement);
 
 root.render(
-  <ThemeWrapper>
+  <TigerThemeProvider disableGlobalStyle>
+    <GlobalStyle />
     <Store>
       <BrowserRouter>
         <App />
       </BrowserRouter>
     </Store>
-  </ThemeWrapper>
+  </TigerThemeProvider>
 );

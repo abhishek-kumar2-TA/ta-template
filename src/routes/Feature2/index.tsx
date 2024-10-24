@@ -10,7 +10,7 @@ import { PricingRecord } from '../../models';
 import { ActionItemColumn, TertiaryContainer } from './styled';
 import { useNotificationApiContext } from '../../store/NotificationStore';
 
-export const UserDashboard = () => {
+export const Feature2 = () => {
   const [storeContent, setStoreContent] = useState<PricingRecord[]>([]);
   const [fetchError, setFetchError] = useState(false);
   const { updateErrorNotification } = useNotificationApiContext();
@@ -41,7 +41,7 @@ export const UserDashboard = () => {
       <GridContainer>
         <GridColumn>
           <Spacer height="1rem" />
-          <h1 className="pageHeader">Dashboard</h1>
+          <h1 className="pageHeader">Feature 2</h1>
           <Spacer height="2rem" />
         </GridColumn>
       </GridContainer>
@@ -64,7 +64,7 @@ export const UserDashboard = () => {
             onClick={() =>
               updateErrorNotification({
                 title: 'Custom error',
-                additionalMessage: 'Test message from dashboard',
+                additionalMessage: 'Test message from feature 2',
               })
             }>
             Primary

@@ -5,10 +5,10 @@ import { Route, Routes, useNavigate } from 'react-router-dom';
 import { LayoutComponent } from './components/layout';
 
 import { UserDashboard } from './routes/Dashboard';
-import { AddPricing } from './routes/AddPricing';
 import { LoginComponent } from './routes/Login';
 import { useUserContext } from './store/LoggedUserStore';
 import { getUrl } from './utils';
+import { Feature2 } from './routes/Feature2';
 
 const App = () => {
   const { user, updateUser, clearUser } = useUserContext();
@@ -38,18 +38,20 @@ const App = () => {
   }, []);
 
   return (
-    <LayoutComponent>
-      <Routes>
-        {user ? (
-          <>
+    <>
+      {user ? (
+        <LayoutComponent>
+          <Routes>
             <Route path="/" element={<UserDashboard />} />
-            <Route path="/add-pricing" element={<AddPricing />} />
-          </>
-        ) : (
+            <Route path="/feature-2" element={<Feature2 />} />
+          </Routes>
+        </LayoutComponent>
+      ) : (
+        <Routes>
           <Route path="/" element={<LoginComponent />} />
-        )}
-      </Routes>
-    </LayoutComponent>
+        </Routes>
+      )}
+    </>
   );
 };
 
