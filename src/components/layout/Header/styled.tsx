@@ -1,12 +1,22 @@
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 
 export const HeaderWrapper = styled.header`
-  height: 80px;
-  background: ${(props) => props.theme.colors.background};
-  color: ${(props) => props.theme.colors.textPrimary};
+  height: 70px;
+  background: var(--colors-secondaryBackground-base);
+  color: var(--colors-textPrimary-base);
   display: flex;
   align-items: center;
+  justify-content: space-between;
   padding: 0 2rem;
+  flex-shrink: 0;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+
+  @media screen and (min-width: 768px) {
+    position: inherit;
+  }
 `;
 
 export const ProjectName = styled.div`
@@ -19,22 +29,22 @@ export const MainNav = styled.nav`
   gap: 2rem;
 
   a {
-    color: ${(props) => props.theme.colors.textPrimary};
+    color: var(--colors-textPrimary-base);
     text-decoration: none;
     display: flex;
     align-items: center;
-    border-bottom: 2px solid ${(props) => props.theme.colors.background};
+    border-bottom: 2px solid var(--colors-secondaryBackground-base);
   }
 
   .active {
-    border-bottom: 2px solid ${(props) => props.theme.colors.secondary.base};
+    border-bottom: 2px solid var(--colors-secondary-base);
   }
 `;
 
 export const LogoutButton = styled.button`
   border: none;
   background: transparent;
-  color: ${(props) => props.theme.colors.textPrimary};
+  color: var(--colors-textPrimary-base);
   cursor: pointer;
   font-size: 1.2rem;
   padding: 8px;

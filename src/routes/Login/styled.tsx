@@ -1,16 +1,13 @@
 import styled from 'styled-components';
 
-import { GridColumn } from '@tiger-analytics/ui/grid';
-
-export const StyledLoginWrapper = styled(GridColumn)`
-  min-height: 100vh;
+export const StyledLoginWrapper = styled('ta-grid-column')`
   justify-content: center;
   align-items: center;
 `;
 
 export const StyledLoginContainer = styled.form`
   width: 340px;
-  border: 1px solid ${(props) => props.theme.colors.primary};
+  border: 1px solid var(--colors-primary-base);
   display: flex;
   flex-direction: column;
   gap: 1rem;
@@ -18,7 +15,7 @@ export const StyledLoginContainer = styled.form`
 `;
 
 export const ErrorMessage = styled.div`
-  color: ${(props) => props.theme.colors.error};
+  color: var(--colors-error-base);
   font-size: 12px;
   height: 12px;
 `;
