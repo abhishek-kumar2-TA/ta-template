@@ -2,6 +2,12 @@ import React, { FormEvent, useEffect, useState } from 'react';
 
 import { ButtonSize, ButtonVariant } from '@tiger-analytics/ui';
 
+import { GridColumn, GridContainer } from '@tiger-analytics/react/grid';
+
+import { Button } from '@tiger-analytics/react/button';
+
+import { Input } from '@tiger-analytics/react/formFields';
+
 import { Card, CardListContainer, CreateTaskForm } from './styled';
 import { TextArea } from '../../components/designSystem/form';
 import { useTaskManagerService } from './useTaskManagerService';
@@ -13,16 +19,17 @@ export const TaskManager = () => {
   const [taskName, setTaskName] = useState('');
   const [taskDescription, setTaskDescription] = useState('');
 
-  const taskNameChangeHandler = (value: string) => {
-    setTaskName(value);
-  };
-
   useEffect(() => {
     getTasks().then((data) => {
       setTaskList(data);
     });
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
+
+  const taskNameChangeHandler = (event: Event) => {
+    const inputTarget = event.target as HTMLInputElement;
+    setTaskName(inputTarget.value);
+  };
 
   const createTaskHandler = async (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
@@ -43,45 +50,54 @@ export const TaskManager = () => {
 
   return (
     <>
-      <ta-grid-container>
-        <ta-grid-column>
+      <GridContainer>
+        <GridColumn>
           <h1 className="pageHeader">Task Manager</h1>
           <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry.</p>
-        </ta-grid-column>
-      </ta-grid-container>
-      <ta-grid-container>
-        <ta-grid-column md={8} lg={8}>
+        </GridColumn>
+      </GridContainer>
+      <GridContainer>
+        <GridColumn md={8} lg={8}>
           <h2>All tasks</h2>
           <CardListContainer>
             {taskList.map((task, index) => (
               <Card key={index}>
                 <h3>{task.name}</h3>
                 <p>{task.description}</p>
-                <ta-button
+                <Button
+                  id={`${task.id}-delete`}
+                  style={{ width: '100%' }}
                   variant={ButtonVariant.Destruct}
                   size={ButtonSize.Small}
-                  onClickHandler={() => deleteTaskHandler(task.id)}>
+                  onClick={() => deleteTaskHandler(task.id)}>
                   Delete
-                </ta-button>
+                </Button>
               </Card>
             ))}
           </CardListContainer>
-        </ta-grid-column>
-        <ta-grid-column md={4} lg={4}>
+        </GridColumn>
+        <GridColumn md={4} lg={4}>
           <CreateTaskForm onSubmit={createTaskHandler}>
             <h2>Create task</h2>
-            <ta-text-input label="Name" value={taskName} onChangeHandler={taskNameChangeHandler} />
+            <Input
+              id="create-task-name"
+              label="Name"
+              value={taskName}
+              onInput={taskNameChangeHandler}
+            />
             <TextArea
-              id="taskDescription"
+              id="create-task-description"
               label="Description"
               value={taskDescription}
               onChangeHandler={setTaskDescription}
               required
             />
-            <ta-button type="submit">Submit</ta-button>
+            <Button id="create-task-submit" type="submit">
+              Submit
+            </Button>
           </CreateTaskForm>
-        </ta-grid-column>
-      </ta-grid-container>
+        </GridColumn>
+      </GridContainer>
     </>
   );
 };

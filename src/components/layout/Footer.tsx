@@ -1,7 +1,8 @@
+import { GridContainer } from '@tiger-analytics/react/grid';
 import React from 'react';
 import styled from 'styled-components';
 
-export const StyledFooter = styled('ta-grid-container')`
+export const StyledFooter = styled.footer`
   height: 50px;
   color: var(--colors-textPrimary-base);
   border-top: 2px solid var(--colors-secondary-base);
@@ -19,7 +20,7 @@ export const StyledFooterContentText = styled.span`
 
 export const Footer = () => {
   return (
-    <StyledFooter as="footer">
+    <StyledFooter>
       <StyledFooterContentText>Copyright ©2024. Tiger Analytics Limited</StyledFooterContentText>
       <StyledFooterContentText>Version: 1.0.0</StyledFooterContentText>
     </StyledFooter>

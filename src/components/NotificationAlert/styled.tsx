@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 
 export interface NotificationWrapperProps {
-  isVisible: boolean;
+  $isVisible: boolean;
 }
 
 export const NotificationWrapper = styled.div<NotificationWrapperProps>`
@@ -16,7 +16,7 @@ export const NotificationWrapper = styled.div<NotificationWrapperProps>`
   border-radius: var(--global-componentRadius);
   box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
   z-index: 1000;
-  display: ${({ isVisible }) => (isVisible ? 'flex' : 'none')};
+  display: ${({ $isVisible }) => ($isVisible ? 'flex' : 'none')};
   align-items: start;
   transition: opacity 0.3s ease;
 

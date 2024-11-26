@@ -1,6 +1,7 @@
+import { GridColumn } from '@tiger-analytics/react/grid';
 import styled from 'styled-components';
 
-export const StyledLoginWrapper = styled('ta-grid-column')`
+export const StyledLoginWrapper = styled(GridColumn)`
   justify-content: center;
   align-items: center;
 `;

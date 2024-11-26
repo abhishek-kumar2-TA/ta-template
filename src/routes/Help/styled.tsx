@@ -1,3 +1,4 @@
+import { GridColumn, GridContainer } from '@tiger-analytics/react/grid';
 import { HTMLProps } from 'react';
 import styled from 'styled-components';
 
@@ -8,12 +9,12 @@ export interface ActionItemColumnProps extends HTMLProps<HTMLDivElement> {
   sm?: number;
 }
 
-export const ActionItemColumn = styled('ta-grid-column')<ActionItemColumnProps>`
+export const ActionItemColumn = styled(GridColumn)<ActionItemColumnProps>`
   flex-direction: row;
   gap: 1rem;
 `;
 
-export const TertiaryContainer = styled('ta-grid-container')`
-  background-color: ${({ theme }) => theme.colors.tertiary.base};
+export const TertiaryContainer = styled(GridContainer)`
+  background-color: var(--colors-tertiary-base);
   padding: 1rem;
 `;

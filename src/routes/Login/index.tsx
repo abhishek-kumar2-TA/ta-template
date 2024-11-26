@@ -1,29 +1,17 @@
-import React, { FormEvent, useEffect, useRef, useState } from 'react';
+import React, { FormEvent, useState } from 'react';
+import { GridContainer } from '@tiger-analytics/react/grid';
+import { Button } from '@tiger-analytics/react/button';
+import { Input } from '@tiger-analytics/react/formFields';
 
 import { ErrorMessage, StyledLoginContainer, StyledLoginWrapper } from './styled';
 import { useUserContext } from '../../store/LoggedUserStore';
 import { getUrl } from '../../utils';
-
-type TextInputComponentType = HTMLElement & {
-  onChangeHandler?: (value: string) => void; // Define the type of the custom property
-};
 
 export const LoginComponent = () => {
   const [username, setUserName] = useState('');
   const [password, setPassword] = useState('');
   const [loginError, setLoginError] = useState(false);
   const { updateUser } = useUserContext();
-
-  const usernameRef = useRef<TextInputComponentType | null>(null);
-  const passwordRef = useRef<TextInputComponentType | null>(null);
-
-  const usernameChangeHandler = (value: string) => {
-    setUserName(value);
-  };
-
-  const passwordChangeHandler = (value: string) => {
-    setPassword(value);
-  };
 
   const loginFormSubmitHandler = (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
@@ -51,31 +39,42 @@ export const LoginComponent = () => {
       });
   };
 
-  useEffect(() => {
-    if (usernameRef.current) {
-      usernameRef.current.onChangeHandler = usernameChangeHandler;
+  const inputChangeHandler = (event: Event, inputField: string = 'username') => {
+    const inputTarget = event.target as HTMLInputElement;
+    if (inputField === 'username') {
+      setUserName(inputTarget.value);
+    } else {
+      setPassword(inputTarget.value);
     }
-    if (passwordRef.current) {
-      passwordRef.current.onChangeHandler = passwordChangeHandler;
-    }
-  });
-
-  console.log(username);
+  };
 
   return (
-    <ta-grid-container
+    <GridContainer
       showSideMargin={false}
       restrictHeightToMaxContent={false}
       style={{ height: '100%' }}>
       <StyledLoginWrapper>
         <StyledLoginContainer onSubmit={loginFormSubmitHandler}>
           <h1>Sign in</h1>
-          <ta-text-input ref={usernameRef} value={username} label="Username" />
-          <ta-text-input ref={passwordRef} value={password} label="Password" type="password" />
+          <Input
+            id="username"
+            value={username}
+            label="Username"
+            onInput={(e) => inputChangeHandler(e)}
+          />
+          <Input
+            id="password"
+            value={password}
+            label="Password"
+            type="password"
+            onInput={(e) => inputChangeHandler(e, 'password')}
+          />
           <ErrorMessage>{loginError ? 'Invalid credentials' : ''}</ErrorMessage>
-          <ta-button type="submit">Submit</ta-button>
+          <Button id="login-submit" type="submit" style={{ width: '100%' }}>
+            Submit
+          </Button>
         </StyledLoginContainer>
       </StyledLoginWrapper>
-    </ta-grid-container>
+    </GridContainer>
   );
 };

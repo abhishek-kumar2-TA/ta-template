@@ -12,7 +12,7 @@ const NotificationAlert = () => {
     updateErrorNotification({ title: '', additionalMessage: '' });
   };
   return (
-    <NotificationWrapper isVisible={!!message.title} className={!message.title ? 'fade-out' : ''}>
+    <NotificationWrapper $isVisible={!!message.title} className={!message.title ? 'fade-out' : ''}>
       <div>
         <b>{`${message.title}`}</b>
         <br />

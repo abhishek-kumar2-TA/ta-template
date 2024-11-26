@@ -2,6 +2,8 @@ import React, { lazy, Suspense, useEffect } from 'react';
 
 import { Route, Routes, useNavigate } from 'react-router-dom';
 
+import { GridContainer } from '@tiger-analytics/react/grid';
+
 import { LayoutComponent } from './components/layout';
 
 import { LoginComponent } from './routes/Login';
@@ -41,12 +43,12 @@ const App = () => {
     <LayoutComponent>
       <Suspense fallback={<div>Loading...</div>}>
         {user ? (
-          <ta-grid-container showSideMargin={false} restrictHeightToMaxContent={false}>
+          <GridContainer showSideMargin={false} restrictHeightToMaxContent={false}>
             <Routes>
               <Route path="/" element={<TaskManager />} />
               <Route path="/help" element={<Help />} />
             </Routes>
-          </ta-grid-container>
+          </GridContainer>
         ) : (
           <Routes>
             <Route path="/" element={<LoginComponent />} />
