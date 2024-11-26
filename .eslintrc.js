@@ -19,7 +19,12 @@ module.exports = {
   plugins: ['react', 'react-hooks', '@stylistic', 'prettier', 'import', 'jest'],
   rules: {
     'import/no-unresolved': 'error',
-    'prettier/prettier': 'error',
+    'prettier/prettier': [
+      'error',
+      {
+        endOfLine: 'auto',
+      },
+    ],
     'no-trailing-spaces': 'off',
     '@stylistic/semi': 'error',
     'indent': 'off',

@@ -16,20 +16,23 @@
         "strict": true,
         "forceConsistentCasingInFileNames": true,
         "noFallthroughCasesInSwitch": true,
-        "module": "NodeNext",
+        "module": "ESNext",
         "sourceMap": true,
         "declaration": true,
         "declarationMap": true,
-        "moduleResolution": "NodeNext",
+        "moduleResolution": "bundler",
         "resolveJsonModule": true,
         "isolatedModules": true,
         "noUnusedParameters": true,
         "removeComments": true,
         "outDir": "dist",
-        "jsx": "react-jsx"
+        "jsx": "react-jsx",
+        "experimentalDecorators": true,
+        "emitDecoratorMetadata": true,
+        "useDefineForClassFields": false,
     },
     "include": [
-        "src/**/*"
+        "src/**/*",
     ],
     "exclude": [
         "node_modules",

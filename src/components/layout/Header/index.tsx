@@ -5,6 +5,7 @@ import { NavLink } from 'react-router-dom';
 import { HeaderWrapper, LogoutButton, MainNav, ProjectName } from './styled';
 import { useUserContext } from '../../../store/LoggedUserStore';
 import { getUrl } from '../../../utils';
+import { TigerLogo } from '../../../assets/svg';
 
 export const Header = () => {
   const { user, clearUser } = useUserContext();
@@ -23,14 +24,14 @@ export const Header = () => {
 
   return (
     <HeaderWrapper>
-      <ProjectName>Portal Template</ProjectName>
+      <TigerLogo />
       {user ? (
         <MainNav>
           <NavLink to="/" className={({ isActive }) => (isActive ? 'active' : '')}>
-            Home
+            Task manager
           </NavLink>
-          <NavLink to="/feature-2" className={({ isActive }) => (isActive ? 'active' : '')}>
-            Feature 2
+          <NavLink to="/help" className={({ isActive }) => (isActive ? 'active' : '')}>
+            Help
           </NavLink>
           <LogoutButton onClick={logoutClickHandler}>Logout</LogoutButton>
         </MainNav>

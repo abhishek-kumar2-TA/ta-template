@@ -1,2 +1,2 @@
-export * from './fetchContextProvider';
+export * from './NotificationContextProvider';
 export * from './type';

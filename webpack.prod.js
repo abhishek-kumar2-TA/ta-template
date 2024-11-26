@@ -29,7 +29,6 @@ module.exports = merge(webpackConfig, {
   plugins: [
     new HtmlWebpackPlugin({
       template: './public/index.html',
-      favicon: './public/favicon.ico',
       minify: {
         removeComments: true,
         collapseWhitespace: true,

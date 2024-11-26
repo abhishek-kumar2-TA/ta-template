@@ -1,14 +1,16 @@
-import React, { useEffect } from 'react';
+import React, { lazy, Suspense, useEffect } from 'react';
 
 import { Route, Routes, useNavigate } from 'react-router-dom';
 
+import { GridContainer } from '@tiger-analytics/react/grid';
+
 import { LayoutComponent } from './components/layout';
 
-import { UserDashboard } from './routes/Dashboard';
 import { LoginComponent } from './routes/Login';
 import { useUserContext } from './store/LoggedUserStore';
 import { getUrl } from './utils';
-import { Feature2 } from './routes/Feature2';
+const TaskManager = lazy(() => import('./routes/TaskManager'));
+const Help = lazy(() => import('./routes/Help'));
 
 const App = () => {
   const { user, updateUser, clearUser } = useUserContext();
@@ -38,20 +40,22 @@ const App = () => {
   }, []);
 
   return (
-    <>
-      {user ? (
-        <LayoutComponent>
+    <LayoutComponent>
+      <Suspense fallback={<div>Loading...</div>}>
+        {user ? (
+          <GridContainer showSideMargin={false} restrictHeightToMaxContent={false}>
+            <Routes>
+              <Route path="/" element={<TaskManager />} />
+              <Route path="/help" element={<Help />} />
+            </Routes>
+          </GridContainer>
+        ) : (
           <Routes>
-            <Route path="/" element={<UserDashboard />} />
-            <Route path="/feature-2" element={<Feature2 />} />
+            <Route path="/" element={<LoginComponent />} />
           </Routes>
-        </LayoutComponent>
-      ) : (
-        <Routes>
-          <Route path="/" element={<LoginComponent />} />
-        </Routes>
-      )}
-    </>
+        )}
+      </Suspense>
+    </LayoutComponent>
   );
 };
 

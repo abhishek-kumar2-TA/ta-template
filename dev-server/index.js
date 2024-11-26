@@ -10,6 +10,7 @@ const loginRoute = require('./routes/auth/login');
 const logoutRoute = require('./routes/auth/logout');
 const sessionRoute = require('./routes/auth/session');
 const userRoute = require('./routes/user');
+const tasksRoute = require('./routes/taskManager');
 
 const checkSessionCookie = function (req, res, next) {
   // either string or undefined
@@ -38,6 +39,7 @@ const whitelist = [
   'http://localhost:3002',
   'http://localhost:3003',
   'http://localhost:3004',
+  'http://localhost:50311',
 ];
 
 app.use(
@@ -68,6 +70,7 @@ app.use('/session', sessionRoute);
 app.use(checkSessionCookie);
 app.use('/logout', logoutRoute);
 
+app.use('/tasks', tasksRoute);
 app.use('/users', userRoute);
 
 app.listen(3010, () => {

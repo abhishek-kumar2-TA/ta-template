@@ -1,9 +1,9 @@
 import React, { FormEvent, useState } from 'react';
-
-import { Button } from '@tiger-analytics/ui/button';
+import { GridContainer } from '@tiger-analytics/react/grid';
+import { Button } from '@tiger-analytics/react/button';
+import { Input } from '@tiger-analytics/react/formFields';
 
 import { ErrorMessage, StyledLoginContainer, StyledLoginWrapper } from './styled';
-import { TextInput } from '../../designSystem/form';
 import { useUserContext } from '../../store/LoggedUserStore';
 import { getUrl } from '../../utils';
 
@@ -39,21 +39,42 @@ export const LoginComponent = () => {
       });
   };
 
+  const inputChangeHandler = (event: Event, inputField: string = 'username') => {
+    const inputTarget = event.target as HTMLInputElement;
+    if (inputField === 'username') {
+      setUserName(inputTarget.value);
+    } else {
+      setPassword(inputTarget.value);
+    }
+  };
+
   return (
-    <StyledLoginWrapper>
-      <StyledLoginContainer onSubmit={loginFormSubmitHandler}>
-        <h1>Login</h1>
-        <TextInput id="username" label="Username" onChangeHandler={setUserName} required />
-        <TextInput
-          id="password"
-          label="Password"
-          type="password"
-          onChangeHandler={setPassword}
-          required
-        />
-        <ErrorMessage>{loginError ? 'Invalid credentials' : ''}</ErrorMessage>
-        <Button type="submit">Submit</Button>
-      </StyledLoginContainer>
-    </StyledLoginWrapper>
+    <GridContainer
+      showSideMargin={false}
+      restrictHeightToMaxContent={false}
+      style={{ height: '100%' }}>
+      <StyledLoginWrapper>
+        <StyledLoginContainer onSubmit={loginFormSubmitHandler}>
+          <h1>Sign in</h1>
+          <Input
+            id="username"
+            value={username}
+            label="Username"
+            onInput={(e) => inputChangeHandler(e)}
+          />
+          <Input
+            id="password"
+            value={password}
+            label="Password"
+            type="password"
+            onInput={(e) => inputChangeHandler(e, 'password')}
+          />
+          <ErrorMessage>{loginError ? 'Invalid credentials' : ''}</ErrorMessage>
+          <Button id="login-submit" type="submit" style={{ width: '100%' }}>
+            Submit
+          </Button>
+        </StyledLoginContainer>
+      </StyledLoginWrapper>
+    </GridContainer>
   );
 };
