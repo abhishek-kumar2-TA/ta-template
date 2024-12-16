@@ -2,10 +2,10 @@ import React from 'react';
 
 import { NavLink } from 'react-router-dom';
 
-import { HeaderWrapper, LogoutButton, MainNav, ProjectName } from './styled';
+import { HeaderWrapper, LogoContainer, LogoutButton, MainNav, ProjectName } from './styled';
 import { useUserContext } from '../../../store/LoggedUserStore';
 import { getUrl } from '../../../utils';
-import { TigerLogo } from '../../../assets/svg';
+import TigerLogo from '../../../assets/images/TA-Logo.png';
 
 export const Header = () => {
   const { user, clearUser } = useUserContext();
@@ -24,7 +24,9 @@ export const Header = () => {
 
   return (
     <HeaderWrapper>
-      <TigerLogo />
+      <LogoContainer>
+        <img src={TigerLogo} alt="Tiger Analytics Logo" />
+      </LogoContainer>
       {user ? (
         <MainNav>
           <NavLink to="/" className={({ isActive }) => (isActive ? 'active' : '')}>

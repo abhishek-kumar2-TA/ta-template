@@ -1,4 +1,4 @@
-import styled, { css } from 'styled-components';
+import styled from 'styled-components';
 
 export const HeaderWrapper = styled.header`
   height: 70px;
@@ -22,6 +22,15 @@ export const HeaderWrapper = styled.header`
 export const ProjectName = styled.div`
   font-size: 2rem;
   flex-grow: 1;
+`;
+
+export const LogoContainer = styled.div`
+  display: flex;
+  width: 120px;
+
+  img {
+    width: 100%;
+  }
 `;
 
 export const MainNav = styled.nav`

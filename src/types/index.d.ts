@@ -1,5 +1,3 @@
-import '@ta-ui/ui-react/index.d.ts';
-
 declare module '*.png' {
   const src: string;
   export default src;
