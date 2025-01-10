@@ -6,10 +6,9 @@ import { GridColumn, GridContainer } from '@tiger-analytics/react/grid';
 
 import { Button } from '@tiger-analytics/react/button';
 
-import { Input } from '@tiger-analytics/react/formFields';
+import { Input, TextArea } from '@tiger-analytics/react/formFields';
 
 import { Card, CardListContainer, CreateTaskForm } from './styled';
-import { TextArea } from '../../components/designSystem/form';
 import { useTaskManagerService } from './useTaskManagerService';
 import { Task } from '../../models';
 
@@ -26,9 +25,14 @@ export const TaskManager = () => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
-  const taskNameChangeHandler = (event: Event) => {
+  const taskNameChangeHandler = (event: FormEvent) => {
     const inputTarget = event.target as HTMLInputElement;
     setTaskName(inputTarget.value);
+  };
+
+  const taskDescriptionChangeHandler = (event: FormEvent) => {
+    const inputTarget = event.target as HTMLTextAreaElement;
+    setTaskDescription(inputTarget.value);
   };
 
   const createTaskHandler = async (event: FormEvent<HTMLFormElement>) => {
@@ -66,9 +70,9 @@ export const TaskManager = () => {
                 <p>{task.description}</p>
                 <Button
                   id={`${task.id}-delete`}
-                  style={{ width: '100%' }}
                   variant={ButtonVariant.Destruct}
                   size={ButtonSize.Small}
+                  style={{ width: '100%' }}
                   onClick={() => deleteTaskHandler(task.id)}>
                   Delete
                 </Button>
@@ -89,10 +93,10 @@ export const TaskManager = () => {
               id="create-task-description"
               label="Description"
               value={taskDescription}
-              onChangeHandler={setTaskDescription}
+              onInput={taskDescriptionChangeHandler}
               required
             />
-            <Button id="create-task-submit" type="submit">
+            <Button id="create-task-submit" type="submit" style={{ width: '100%' }}>
               Submit
             </Button>
           </CreateTaskForm>

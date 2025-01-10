@@ -43,16 +43,18 @@ const App = () => {
     <LayoutComponent>
       <Suspense fallback={<div>Loading...</div>}>
         {user ? (
-          <GridContainer showSideMargin={false} restrictHeightToMaxContent={false}>
+          <GridContainer showSideMargin restrictHeightToMaxContent>
             <Routes>
               <Route path="/" element={<TaskManager />} />
               <Route path="/help" element={<Help />} />
             </Routes>
           </GridContainer>
         ) : (
-          <Routes>
-            <Route path="/" element={<LoginComponent />} />
-          </Routes>
+          <GridContainer showSideMargin style={{ minHeight: '100%' }}>
+            <Routes>
+              <Route path="/" element={<LoginComponent />} />
+            </Routes>
+          </GridContainer>
         )}
       </Suspense>
     </LayoutComponent>

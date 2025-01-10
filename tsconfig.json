@@ -9,6 +9,7 @@
             "dom.iterable",
             "esnext"
         ],
+        "baseUrl": ".",
         "allowJs": true,
         "skipLibCheck": true,
         "esModuleInterop": true,
@@ -17,26 +18,31 @@
         "forceConsistentCasingInFileNames": true,
         "noFallthroughCasesInSwitch": true,
         "module": "ESNext",
-        "sourceMap": true,
+        "sourceMap": false,
         "declaration": true,
-        "declarationMap": true,
+        "declarationMap": false,
         "moduleResolution": "bundler",
         "resolveJsonModule": true,
         "isolatedModules": true,
         "noUnusedParameters": true,
         "removeComments": true,
         "outDir": "dist",
-        "jsx": "react-jsx",
         "experimentalDecorators": true,
         "emitDecoratorMetadata": true,
         "useDefineForClassFields": false,
+        "jsx": "react-jsx"
     },
     "include": [
         "src/**/*",
+        "!src/**/*.{spec,test}.{js,ts,jsx,tsx}"
     ],
     "exclude": [
         "node_modules",
         "build",
-        "dist"
+        "dist",
+        "**/stories",
+        "**/__tests__",
+        "**/tests",
+        "**/utils"
     ]
 }

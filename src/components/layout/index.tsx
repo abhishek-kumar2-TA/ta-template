@@ -2,6 +2,8 @@ import React, { ReactNode } from 'react';
 
 import styled, { css } from 'styled-components';
 
+import { GridContainer } from '@tiger-analytics/react/grid';
+
 import { Header } from './Header';
 import { Footer } from './Footer';
 import NotificationAlert from '../NotificationAlert';
