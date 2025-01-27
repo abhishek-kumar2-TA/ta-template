@@ -13,6 +13,10 @@ module.exports = {
   },
   /** any local sub project may give error for export. We can add those projects in transformIgnorePatterns list*/
   // transformIgnorePatterns: ['/node_modules/(?!(project_name_1|project_name_2|...))'],
+  transformIgnorePatterns: ['/node_modules/(?!(@tiger-analytics))'],
+  moduleNameMapper: {
+    '\\.(jpg|jpeg|png|gif|webp|avif|svg)$': '<rootDir>/config/jest/mockfile.js',
+  },
   coverageDirectory: 'coverage',
   coverageReporters: ['clover', 'json', 'lcov', 'text', 'text-summary'],
   /** files to ignore
@@ -20,5 +24,5 @@ module.exports = {
    */
   coveragePathIgnorePatterns: [],
   testEnvironment: 'jsdom',
-  setupFilesAfterEnv: ['<rootDir>/config/jest/setupTests.ts'],
+  setupFilesAfterEnv: ['<rootDir>/config/jest/setUpTests.ts'],
 };
