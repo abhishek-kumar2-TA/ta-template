@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 
 import { ButtonVariant } from '@tiger-analytics/ui';
 
@@ -11,6 +11,10 @@ import { useNotificationApiContext } from '../../store/NotificationStore';
 
 export const Help = () => {
   const { updateErrorNotification } = useNotificationApiContext();
+
+  useEffect(() => {
+    return () => updateErrorNotification({ title: '', additionalMessage: '' });
+  });
 
   return (
     <>

@@ -2,24 +2,18 @@ import React from 'react';
 
 import { NavLink } from 'react-router-dom';
 
-import { HeaderWrapper, LogoContainer, LogoutButton, MainNav, ProjectName } from './styled';
+import { useLoginService } from '../../../routes/Login/useLoginService';
+
+import { HeaderWrapper, LogoContainer, LogoutButton, MainNav } from './styled';
 import { useUserContext } from '../../../store/LoggedUserStore';
-import { getUrl } from '../../../utils';
 import TigerLogo from '../../../assets/images/TA-Logo.png';
 
 export const Header = () => {
-  const { user, clearUser } = useUserContext();
+  const { user } = useUserContext();
+  const { logoutUser } = useLoginService();
 
-  const logoutClickHandler = () => {
-    fetch(getUrl('/logout'), {
-      credentials: 'include',
-    })
-      .then(() => {
-        clearUser();
-      })
-      .catch(() => {
-        clearUser();
-      });
+  const logoutClickHandler = async () => {
+    await logoutUser();
   };
 
   return (

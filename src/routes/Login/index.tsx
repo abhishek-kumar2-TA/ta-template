@@ -4,38 +4,23 @@ import { Input } from '@tiger-analytics/react/formFields';
 
 import { ErrorMessage, StyledLoginContainer, StyledLoginWrapper } from './styled';
 import { useUserContext } from '../../store/LoggedUserStore';
-import { getUrl } from '../../utils';
+import { useLoginService } from './useLoginService';
 
 export const LoginComponent = () => {
   const [username, setUserName] = useState('');
   const [password, setPassword] = useState('');
   const [loginError, setLoginError] = useState(false);
   const { updateUser } = useUserContext();
+  const { loginUser } = useLoginService();
 
-  const loginFormSubmitHandler = (event: FormEvent<HTMLFormElement>) => {
+  const loginFormSubmitHandler = async (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-    fetch(getUrl('/login'), {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({ username, password }),
-      credentials: 'include',
-    })
-      .then((response) => {
-        if (!response.ok) {
-          throw new Error('Invalid credentials');
-        }
-        return response.json();
-      })
-      .then((data) => {
-        if (data.username && data.role) {
-          updateUser(data);
-        }
-      })
-      .catch(() => {
-        setLoginError(true);
-      });
+    const loginUserData = await loginUser(username, password);
+    if (loginUserData) {
+      updateUser(loginUserData);
+    } else {
+      setLoginError(true);
+    }
   };
 
   const inputChangeHandler = (event: FormEvent, inputField: string = 'username') => {
