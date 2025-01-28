@@ -1,32 +1,22 @@
-import React, { FormEvent, useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 
 import { ButtonFillStyle, ButtonSize, ButtonVariant } from '@tiger-analytics/ui';
 
 import { GridColumn, GridContainer } from '@tiger-analytics/react/grid';
-import { Drawer, DrawerSlide, Modal } from '@tiger-analytics/react/overlay';
+import { Modal } from '@tiger-analytics/react/overlay';
 
 import { Button } from '@tiger-analytics/react/button';
 
-import { Input, TextArea } from '@tiger-analytics/react/formFields';
-
-import {
-  Card,
-  CardListContainer,
-  CreateTaskForm,
-  CardModalActionItems,
-  ErrorContainer,
-} from './styled';
+import { Card, CardListContainer, CardModalActionItems } from './styled';
 import { useTaskManagerService } from './useTaskManagerService';
 import { Task } from '../../models';
+import { CreateTask } from './CreateTask';
 
 export const TaskManager = () => {
   const [taskList, setTaskList] = useState<Task[]>([]);
-  const { getTasks, postTask, deleteTask } = useTaskManagerService();
-  const [taskName, setTaskName] = useState('');
-  const [taskDescription, setTaskDescription] = useState('');
+  const { getTasks, deleteTask } = useTaskManagerService();
+
   const [taskIdToDelete, setTaskIdToDelete] = useState('');
-  const [showCreateTaskDrawer, setShowCreateTaskDrawer] = useState(false);
-  const [errorMsg, setErrorMessage] = useState('');
 
   useEffect(() => {
     getTasks().then((data) => {
@@ -35,27 +25,6 @@ export const TaskManager = () => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
-  const taskNameChangeHandler = (event: FormEvent) => {
-    const inputTarget = event.target as HTMLInputElement;
-    setTaskName(inputTarget.value);
-    setErrorMessage('');
-  };
-
-  const taskDescriptionChangeHandler = (event: FormEvent) => {
-    const inputTarget = event.target as HTMLTextAreaElement;
-    setTaskDescription(inputTarget.value);
-    setErrorMessage('');
-  };
-
-  const createTaskHandler = async () => {
-    const isTaskCreated = await postTask({ name: taskName, description: taskDescription });
-    if (isTaskCreated) {
-      const newTaskList = await getTasks();
-      setTaskList(newTaskList);
-      setShowCreateTaskDrawer(false);
-    }
-  };
-
   const deleteTaskHandler = async () => {
     const isTaskDeleted = await deleteTask(taskIdToDelete);
     if (isTaskDeleted) {
@@ -63,22 +32,6 @@ export const TaskManager = () => {
       setTaskList(newTaskList);
     }
     setTaskIdToDelete('');
-  };
-
-  const drawerCloseHandler = () => {
-    setTaskName('');
-    setTaskDescription('');
-    setShowCreateTaskDrawer(false);
-    setErrorMessage('');
-  };
-
-  const createTaskValidator = (): boolean => {
-    if (!taskName || !taskDescription) {
-      setErrorMessage('Both name and description are required.');
-      return false;
-    } else {
-      return true;
-    }
   };
 
   return (
@@ -91,12 +44,7 @@ export const TaskManager = () => {
       </GridContainer>
       <GridContainer>
         <GridColumn>
-          <Button
-            id="create-task-submit"
-            type="submit"
-            onClick={() => setShowCreateTaskDrawer(true)}>
-            Create task
-          </Button>
+          <CreateTask setTaskList={setTaskList} />
           <h2>All tasks</h2>
           <CardListContainer>
             {taskList.map((task, index) => (
@@ -115,28 +63,6 @@ export const TaskManager = () => {
             ))}
           </CardListContainer>
         </GridColumn>
-        <Drawer
-          id="create-task-drawer"
-          visible={showCreateTaskDrawer}
-          onClose={drawerCloseHandler}
-          onSubmit={createTaskHandler}>
-          <DrawerSlide id="create-task-slide" title="Create task" validate={createTaskValidator}>
-            <Input
-              id="create-task-name"
-              label="Name"
-              value={taskName || ''}
-              onInput={taskNameChangeHandler}
-            />
-            <TextArea
-              id="create-task-description"
-              label="Description"
-              value={taskDescription}
-              onInput={taskDescriptionChangeHandler}
-              required
-            />
-            <ErrorContainer>{errorMsg}</ErrorContainer>
-          </DrawerSlide>
-        </Drawer>
         <Modal
           id="delete-task"
           visible={!!taskIdToDelete}
