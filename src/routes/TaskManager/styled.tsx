@@ -46,3 +46,14 @@ export const CardListContainer = styled.div`
     flex-direction: row;
   }
 `;
+
+export const CardModalActionItems = styled.div`
+  display: flex;
+  margin-top: 1rem;
+  gap: 2rem;
+`;
+
+export const ErrorContainer = styled.div`
+  font-size: 0.8rem;
+  color: red;
+`;
