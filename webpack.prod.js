@@ -1,6 +1,5 @@
 const { merge } = require('webpack-merge');
 const path = require('path');
-const CopyWebpackPlugin = require('copy-webpack-plugin');
 const webpackConfig = require('./config/webpack/webpack.config');
 const webpack = require('webpack');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
@@ -51,15 +50,6 @@ module.exports = merge(webpackConfig, {
     new MiniCssExtractPlugin({
       filename: 'css/[name].[contenthash:8].css',
       chunkFilename: 'css/[name].[contenthash:8].chunk.css',
-    }),
-    new CopyWebpackPlugin({
-      patterns: [
-        {
-          from: path.resolve(__dirname, 'public'),
-          to: path.resolve(__dirname, 'build'),
-          globOptions: { dot: true, ignore: ['**/index.html'] },
-        },
-      ],
     }),
   ],
   optimization: {

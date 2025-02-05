@@ -23,7 +23,7 @@ module.exports = {
         use: ['ts-loader'],
       },
       {
-        test: /\.(png|jpg|jpeg|svg|gif)$/i,
+        test: /\.(png|jpg|jpeg|svg|gif|glb|gltf)$/i,
         type: 'asset/resource',
       },
     ],
