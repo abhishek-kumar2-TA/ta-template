@@ -1,4 +1,4 @@
-import { Input, TextArea } from '@tiger-analytics/react/formFields';
+import { TextInput, TextArea } from '@tiger-analytics/react/formFields';
 import { Drawer, DrawerSlide } from '@tiger-analytics/react/overlay';
 import React, { FormEvent, useState } from 'react';
 
@@ -64,11 +64,12 @@ export const CreateTask = ({ setTaskList }: CreateTaskProps) => {
       </Button>
       <Drawer
         id="create-task-drawer"
+        title="Create task"
         visible={showCreateTaskDrawer}
         onClose={drawerCloseHandler}
         onSubmit={createTaskHandler}>
         <DrawerSlide id="create-task-slide" title="Create task" validate={createTaskValidator}>
-          <Input
+          <TextInput
             id="create-task-name"
             label="Name"
             value={taskName || ''}

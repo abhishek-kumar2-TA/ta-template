@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { NavLink } from 'react-router-dom';
+import { NavLink, useNavigate } from 'react-router-dom';
 
 import { useLoginService } from '../../../routes/Login/useLoginService';
 
@@ -11,9 +11,11 @@ import TigerLogo from '../../../assets/images/TA-Logo.png';
 export const Header = () => {
   const { user } = useUserContext();
   const { logoutUser } = useLoginService();
+  const navigateTo = useNavigate();
 
   const logoutClickHandler = async () => {
     await logoutUser();
+    navigateTo('/');
   };
 
   return (

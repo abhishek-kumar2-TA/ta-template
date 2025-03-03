@@ -1,10 +1,8 @@
 import React, { useEffect } from 'react';
 
-import { ButtonVariant } from '@tiger-analytics/ui';
-
 import { GridColumn, GridContainer } from '@tiger-analytics/react/grid';
 
-import { Button } from '@tiger-analytics/react/button';
+import { Button, ButtonVariant } from '@tiger-analytics/react/button';
 
 import { ActionItemColumn, TertiaryContainer } from './styled';
 import { useNotificationApiContext } from '../../store/NotificationStore';

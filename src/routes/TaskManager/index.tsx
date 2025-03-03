@@ -1,11 +1,9 @@
 import React, { useEffect, useState } from 'react';
 
-import { ButtonFillStyle, ButtonSize, ButtonVariant } from '@tiger-analytics/ui';
-
 import { GridColumn, GridContainer } from '@tiger-analytics/react/grid';
 import { Modal } from '@tiger-analytics/react/overlay';
 
-import { Button } from '@tiger-analytics/react/button';
+import { Button, ButtonFillStyle, ButtonSize, ButtonVariant } from '@tiger-analytics/react/button';
 
 import { Card, CardListContainer, CardModalActionItems } from './styled';
 import { useTaskManagerService } from './useTaskManagerService';

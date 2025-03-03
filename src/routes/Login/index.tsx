@@ -1,6 +1,6 @@
 import React, { FormEvent, useState } from 'react';
 import { Button } from '@tiger-analytics/react/button';
-import { Input } from '@tiger-analytics/react/formFields';
+import { TextInput } from '@tiger-analytics/react/formFields';
 
 import { ErrorMessage, StyledLoginContainer, StyledLoginWrapper } from './styled';
 import { useUserContext } from '../../store/LoggedUserStore';
@@ -36,13 +36,13 @@ export const LoginComponent = () => {
     <StyledLoginWrapper>
       <StyledLoginContainer onSubmit={loginFormSubmitHandler}>
         <h1>Sign in</h1>
-        <Input
+        <TextInput
           id="username"
           value={username}
           label="Username"
           onInput={(e) => inputChangeHandler(e)}
         />
-        <Input
+        <TextInput
           id="password"
           value={password}
           label="Password"

@@ -6,7 +6,7 @@ export interface StyledLoginWrapperProps {
   children: ReactNode;
 }
 
-export const StyledLoginWrapper = styled('ta-grid-column')<StyledLoginWrapperProps>`
+export const StyledLoginWrapper = styled(GridColumn)<StyledLoginWrapperProps>`
   justify-content: center;
   align-items: center;
 `;
