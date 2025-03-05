@@ -9,8 +9,8 @@ import './index.scss';
 
 import { StyleSheetManager } from 'styled-components';
 
+import { reportWebVitals } from './utils';
 import App from './App';
-
 import { Store } from './store';
 
 const root = ReactDom.createRoot(document.getElementById('root') as HTMLElement);
@@ -26,3 +26,6 @@ root.render(
     </ThemeWrapper>
   </StyleSheetManager>
 );
+
+// eslint-disable-next-line no-console
+reportWebVitals(console.log);
